@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthTest.API.Services;
 using CapstoneProject.Models;
 using CapstoneProject.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace CapstoneProject.Controllers
     {
 
         private readonly EmployeesService _employeeService;
+        private readonly JwtService _jwtService;
 
-        public AuthorizeController(EmployeesService employeeService)
+        public AuthorizeController(EmployeesService employeeService, JwtService jwtService)
         {
             _employeeService = employeeService;
+            _jwtService = jwtService;
         }
 
         public IActionResult Index()
@@ -29,7 +32,7 @@ namespace CapstoneProject.Controllers
             EmployeeDetails obj = _employeeService.ValidateLoginCredentials(value.orcId, value.password);
             if (obj != null)
             {
-                return obj.AccessToken;
+                return _jwtService.GenerateSecurityToken(obj.AccessToken, obj.OrcId);
             }
             return BadRequest("Invalid Username or Password");
         }

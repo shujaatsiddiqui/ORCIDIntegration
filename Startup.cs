@@ -1,3 +1,4 @@
+using AuthTest.API.Middleware;
 using CapstoneProject.Models;
 using CapstoneProject.Services;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +41,9 @@ namespace CapstoneProject
                 configuration.RootPath = "ClientApp/build";
             });
 
+
+            //services.AddTokenAuthentication(Configuration);
+
             services.AddSingleton(Configuration);
         }
 
@@ -60,9 +64,9 @@ namespace CapstoneProject
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            //app.UseAuthentication();
             app.UseRouting();
-
+            //app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

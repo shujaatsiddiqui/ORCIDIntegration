@@ -18,7 +18,7 @@ namespace AuthTest.API.Services
             _expDate = config.GetSection("JwtConfig").GetSection("expirationInMinutes").Value;
         }
 
-        public string GenerateSecurityToken(string email)
+        public string GenerateSecurityToken(string accessToken, string orcid)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secret);
@@ -26,7 +26,9 @@ namespace AuthTest.API.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Email, email)
+                    new Claim(ClaimTypes.Authentication, accessToken),
+                    new Claim(ClaimTypes.NameIdentifier, orcid)
+
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

@@ -45,7 +45,7 @@ namespace CapstoneProject.Services
             return response;
         }
 
-        public async Task<HttpResponseMessage> GetEmployeeDetails(string accessToken)
+        public async Task<HttpResponseMessage> GetEmployeeDetailsFromAPI(string accessToken)
         {
             HttpClientObj.DefaultRequestHeaders.Accept.Clear();
             HttpClientObj.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
