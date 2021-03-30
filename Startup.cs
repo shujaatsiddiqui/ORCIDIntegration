@@ -27,9 +27,6 @@ namespace CapstoneProject
             services.AddHttpClient<EmployeesService>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["BaseUrl"]);
-                client.DefaultRequestHeaders
-                .Accept
-                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
 
 

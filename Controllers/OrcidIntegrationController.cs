@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Xml;
 using CapstoneProject.APIModels;
 using CapstoneProject.Models;
 using CapstoneProject.Services;
@@ -36,43 +37,47 @@ namespace CapstoneProject.Controllers
 
         // GET api/<OrcidIntegrationController>/5
         [HttpGet("{orcid}")]
-        public string Get(int orcid)
+        public async Task<ActionResult> Get(string orcid)
         {
-            return "value";
-        }
-
-        [HttpPost]
-        public ActionResult<Employees> Login([FromBody] LoginDTO value)
-        {
-            Employees obj = _employeeService.ValidateLoginCredentials(value.orcId, value.password);
-            if (obj != null)
+            EmployeeDetails employeeDetails = _employeeService.GetByOrcid(orcid);
+            if (employeeDetails != null)
             {
-                return obj;
+                HttpResponseMessage httpResponseMessage = await _employeeService.GetEmployeeDetails("f057bd71-5081-45d6-b0c5-1d6c0d0dc442");
+                if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(httpResponseMessage.Content.ReadAsStringAsync().Result);
+                    string json = JsonConvert.SerializeXmlNode(doc);
+                    Root Root = JsonConvert.DeserializeObject<Root>(json);
+
+                    return Ok(Root);
+                }
             }
-            return NotFound();
-        }
+            return Forbid();
+        }        
 
         // POST api/<OrcidIntegrationController>
+        // Register API
         [HttpPost]
         [Route("accesstoken")]
         public async Task<IActionResult> Post([FromBody] CodeDTO value)
         {
-            HttpResponseMessage httpResponseMessage = await _employeeService.GetEmployeeAccessTokenFromApi(value.accessToken);
+            HttpResponseMessage httpResponseMessage = await _employeeService.GetEmployeeAccessTokenFromApi(value.code);
             if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 OAuthTokenDTO oAuthTokenDTO = JsonConvert.DeserializeObject<OAuthTokenDTO>(httpResponseMessage.Content.ReadAsStringAsync().Result);
-                Employees employeeObj = _employeeService.GetByOrcid(oAuthTokenDTO.orcid);
+                EmployeeDetails employeeObj = _employeeService.GetByOrcid(oAuthTokenDTO.orcid);
                 if (employeeObj == null)
                 {
-                    //var obj = _employeeService.Create("shujaat Siddiqui", "0000-0002-5807-5617", "admin123", "f1c0d2ec-6693-4739-bc10-ce02fb784884");
-                    var obj = _employeeService.Create(oAuthTokenDTO.name, oAuthTokenDTO.orcid, "admin123", oAuthTokenDTO.access_token);
-                    return CreatedAtAction("accesstoken", new { orcid = obj.OrcId, password = obj.Password });
+                    EmployeeDetails employeeDetails = new EmployeeDetails()
+                    { AccessToken = oAuthTokenDTO.name, Name = oAuthTokenDTO.orcid, OrcId = oAuthTokenDTO.orcid, Password = "admin123" };
+                    return CreatedAtAction("accesstoken", new { orcid = employeeDetails.OrcId, password = employeeDetails.Password });
                 }
                 else
                 {
                     employeeObj.AccessToken = oAuthTokenDTO.access_token;
-                    _employeeService.Update(employeeObj);
-                    return Content(JsonConvert.SerializeObject(employeeObj));
+                    _employeeService.UpdateAccessToken(employeeObj);
+                    return Content(JsonConvert.SerializeObject(employeeObj.ac));
                 }
             }
             else
@@ -102,6 +107,6 @@ namespace CapstoneProject.Controllers
 
     public class CodeDTO
     {
-        public string accessToken { get; set; }
+        public string code { get; set; }
     }
 }

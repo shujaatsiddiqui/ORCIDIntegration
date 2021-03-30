@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,16 +14,16 @@ namespace CapstoneProject.Services
 {
     public class EmployeesService : EmployeeServiceBase
     {
-        protected readonly IMongoCollection<Employees> _employees;
+        protected readonly IMongoCollection<EmployeeDetails> _employees;
         public EmployeesService(IOrcidIobmIntDatabaseSettings settings,
             HttpClient httpClient,
             IConfiguration configuration) :
             base(settings, httpClient, configuration)
         {
-            _employees = Database.GetCollection<Employees>("Employees");
+            _employees = Database.GetCollection<EmployeeDetails>("Employees");
         }
 
-        public Employees GetByOrcid(string orcId)
+        public EmployeeDetails GetByOrcid(string orcId)
         {
             return _employees.Find(emp => emp.OrcId == orcId).FirstOrDefault();
         }
@@ -37,44 +38,47 @@ namespace CapstoneProject.Services
             nvc.Add(new KeyValuePair<string, string>("redirect_uri", ConfigurationObj["RedirectUri"]));
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "/oauth/token");
             request.Content = new FormUrlEncodedContent(nvc);
-            //request.Content.Headers.Add(@"Content-Length", "50000");
-            HttpResponseMessage response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-
-            //HttpResponseMessage response = await
-            //    HttpClient.SendAsync("oauth/token",
-            //            new StringContent(
-            //                    JsonConvert.SerializeObject(
-            //                    new
-            //                    {
-            //                        client_id = ConfigurationObj["ClientId"],
-            //                        client_secret = ConfigurationObj["ClientSecret"],
-            //                        grant_type = "authorization_code",
-            //                        code = _code,
-            //                        redirect_uri = ConfigurationObj["RedirectUri"]
-            //                    }), Encoding.UTF8, "application/x-www-form-urlencoded"
-            //                ));
+            HttpClientObj.DefaultRequestHeaders
+            .Accept
+            .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await HttpClientObj.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
             return response;
         }
 
-        public Employees Create(string fullName, string orciId, string password, string accessToken)
+        public async Task<HttpResponseMessage> GetEmployeeDetails(string accessToken)
         {
-            Employees employeesObj = new Employees() { AccessToken = accessToken, Name = fullName, OrcId = orciId, Password = password };
-            _employees.InsertOne(employeesObj);
-            return employeesObj;
+            HttpClientObj.DefaultRequestHeaders.Accept.Clear();
+            HttpClientObj.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+            HttpClientObj.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.orcid+xml"));
+            HttpResponseMessage response = await HttpClientObj.GetAsync("0000-0002-5807-5617" + "/record");
+            return response;
         }
 
-        public void Update(Employees Obj)
+        public EmployeeDetails Create(EmployeeDetails employeeDetails)
         {
-            var filter = Builders<Employees>.Filter.Eq("OrcId", Obj.OrcId);
-            var update = Builders<Employees>.Update.Set("AccessToken", Obj.AccessToken);
+            _employees.InsertOne(employeeDetails);
+            return employeeDetails;
+        }
+
+        public void UpdateAccessToken(EmployeeDetails Obj)
+        {
+            var filter = Builders<EmployeeDetails>.Filter.Eq("OrcId", Obj.OrcId);
+            var update = Builders<EmployeeDetails>.Update.Set("AccessToken", Obj.AccessToken);
             _employees.UpdateOne(filter, update);
         }
 
-        public Employees Get(string id) =>
-            _employees.Find<Employees>(emp => emp.Id == id).FirstOrDefault();
+        public void UpdateEmployeeDetails(EmployeeDetails Obj)
+        {
+            var filter = Builders<EmployeeDetails>.Filter.Eq("OrcId", Obj.OrcId);
+            var update = Builders<EmployeeDetails>.Update.Set("Details", Obj.Details);
+            _employees.UpdateOne(filter, update);
+        }
 
-        public Employees ValidateLoginCredentials(string orcid, string password) =>
-            _employees.Find<Employees>(emp => emp.OrcId == orcid && emp.Password == password).FirstOrDefault();
+        public EmployeeDetails Get(string id) =>
+            _employees.Find<EmployeeDetails>(emp => emp.Id == id).FirstOrDefault();
+
+        public EmployeeDetails ValidateLoginCredentials(string orcid, string password) =>
+            _employees.Find<EmployeeDetails>(emp => emp.OrcId == orcid && emp.Password == password).FirstOrDefault();
 
         public void Delete(string orcid)
         {

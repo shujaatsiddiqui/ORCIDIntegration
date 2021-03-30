@@ -7,7 +7,7 @@ namespace CapstoneProject.Services
 {
     public class EmployeeServiceBase
     {
-        protected HttpClient HttpClient { get; }
+        protected HttpClient HttpClientObj { get; }
         protected IMongoDatabase Database { get; }
         protected IConfiguration ConfigurationObj { get; }
         public EmployeeServiceBase(IOrcidIobmIntDatabaseSettings settings, HttpClient httpClient,
@@ -16,7 +16,7 @@ namespace CapstoneProject.Services
             {
                 var client = new MongoClient(settings.ConnectionString);
                 Database = client.GetDatabase(settings.DatabaseName);
-                HttpClient = httpClient;
+                HttpClientObj = httpClient;
                 ConfigurationObj = configuration;
             }
         }
