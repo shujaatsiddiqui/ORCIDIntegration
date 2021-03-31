@@ -1,0 +1,241 @@
+.App {
+  text-align: justify;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////// */
+
+.app {
+  margin: 0 auto;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  padding: 3rem 1rem 1rem;
+}
+.app__text {
+  width: 100%;
+}
+.app__collapse {
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.app__collapse--gradient .app__content {
+  border-color: transparent;
+}
+.app__collapse--gradient:after {
+  pointer-events: none;
+  transition: opacity 300ms;
+  will-change: opacity;
+  opacity: 1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, white);
+}
+.app__collapse--active:after {
+  opacity: 0;
+}
+.app__content {
+  border: 1px solid transparent;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  position: relative;
+  transition: 300ms;
+}
+.app__toggle {
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px #888;
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #494a4c;
+  transition: background-color 300ms;
+}
+.app__toggle--active {
+  background-color: #494a4c;
+  color: white;
+}
+.app__toggle-text {
+  font-size: inherit;
+}
+.app__button {
+  display: block;
+  width: 20rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.app__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform 300ms cubic-bezier(0, 1, 0, 1);
+  will-change: transform;
+  color: white;
+  border-radius: 70%;
+}
+.icon--expanded {
+  transform: rotateZ(-179.99deg);
+}
+.rotate90 {
+  transform: rotateZ(90deg);
+}
+
+
+
+
+/* EMP SECTION */
+
+.emp__text {
+  width: 100%;
+}
+.emp__collapse {
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.emp__collapse--gradient .emp__content {
+  border-color: transparent;
+}
+.emp__collapse--gradient:after {
+  pointer-events: none;
+  transition: opacity 300ms;
+  will-change: opacity;
+  opacity: 1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, white);
+}
+.emp__collapse--active:after {
+  opacity: 0;
+}
+.emp__content {
+  border: 1px solid transparent;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  position: relative;
+  transition: 300ms;
+}
+.emp__toggle {
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px #888;
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #494a4c;
+  transition: background-color 300ms;
+}
+.emp__toggle--active {
+  background-color: #494a4c;
+  color: white;
+}
+.emp__toggle-text {
+  font-size: inherit;
+}
+.emp__button {
+  display: block;
+  width: 20rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.emp__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform 300ms cubic-bezier(0, 1, 0, 1);
+  will-change: transform;
+  color: white;
+  border-radius: 70%;
+}
+.icon--expanded {
+  transform: rotateZ(-179.99deg);
+}
+.rotate90 {
+  transform: rotateZ(90deg);
+}
+
+
+
+.id-banner .oid {
+  border: 1px solid #a6ce39;
+}
+
+a:hover{
+  color: #2D1316;
+}

@@ -7,7 +7,7 @@ import { Counter } from "./components/Counter";
 import { Authentication } from "./components/Authentication";
 //here calling my container component
 import Profile from "./components/Profile";
-
+import './App.css';
 import "./custom.css";
 
 export default class App extends Component {
