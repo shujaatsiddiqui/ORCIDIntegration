@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile.jsx";
 import { getUserEmploymentsInfo } from "../../api/RepoService";
-import XMLParser from "react-xml-parser";
+
 import { employment } from "../../Shared/employment";
 import { works } from "../../Shared/works";
 
@@ -21,7 +21,7 @@ class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    debugger;
+
     getUserEmploymentsInfo("0000-0002-5807-5617")
       .then((res) => {
         // this.setState({
@@ -31,9 +31,11 @@ class ProfileContainer extends Component {
       .catch((error) => {
         alert(error);
       });
+      // console.log(this.state)
   }
 
   render() {
+    // console.log(this.state.Works)
     return (
       <>
         <Profile
