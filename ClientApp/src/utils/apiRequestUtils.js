@@ -9,6 +9,7 @@ export const getRequest = (
   params,
   responseType
 ) => {
+  debugger;
   const axiosConfig = {
     headers: { "Content-Type": "application/json", ...additionalHeaders },
     params,
