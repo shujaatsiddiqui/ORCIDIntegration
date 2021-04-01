@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Profile from "./Profile.jsx";
-import { getUserEmploymentsInfo } from "../../api/RepoService";
+import { getUserDetails } from "../../api/RepoService";
 import XMLParser from "react-xml-parser";
 import { employment } from "../../Shared/employment";
 import { works } from "../../Shared/works";
@@ -22,11 +22,13 @@ class ProfileContainer extends Component {
 
   componentDidMount() {
     debugger;
-    getUserEmploymentsInfo("0000-0002-5807-5617")
+    getUserDetails("0000-0002-5807-5617")
       .then((res) => {
-        // this.setState({
-        //   Employments: new XMLParser().parseFromString(res),
-        // });
+        debugger;
+        var obj = JSON.parse(res);
+        this.setState({
+          Employments: new XMLParser().parseFromString(res),
+        });
       })
       .catch((error) => {
         alert(error);
