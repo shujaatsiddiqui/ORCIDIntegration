@@ -42,19 +42,21 @@ const useStyles = makeStyles((theme) => ({
 
 function Profile(props) {
   const classes = useStyles();
-  const {Employments,Works,UserProfile} = props;
+  const { Employments, Works, UserProfile } = props;
   //debugger;
   return (
-    <Grid container spacing={2}>
-      <Grid item>
-        {/* <User UserProfile={UserProfile} /> */}
+    <Grid container xs={12} spacing={2}>
+      <Grid item xs={4}>
+        <User UserProfile={UserProfile} />
       </Grid>
-      <Grid item>
+      <Grid item xs={8}>
         <Paper elevation={0} className={classes.papers}>
-          {Employments != null ? <Employment Employments={Employments} /> : <></> }
-          {/* {Works != null ? <Work Works={Works} /> :<></> } */}
+          <Employment Employments={Employments} />
+          {/* <Work Works={Works} /> */}
         </Paper>
-        <Typography><strong>Record last modified</strong>  Mar 15, 2021 9:21:14 PM</Typography>
+        <Typography>
+          <strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM
+        </Typography>
       </Grid>
     </Grid>
   );

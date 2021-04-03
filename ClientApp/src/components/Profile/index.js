@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Profile from "./Profile.jsx";
+import Profile from "./Profile";
 import { getUserDetails } from "../../api/RepoService";
 import XMLParser from "react-xml-parser";
-// import { employment } from "../../Shared/employment";
+import { employment } from "../../Shared/employment";
 // import { works } from "../../Shared/works";
 
 // This is my continer components that deals with all the logics
@@ -11,7 +11,7 @@ class ProfileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Employments: [],
+      Employments: employment,
       Works: [],
       UserProfile: {
         FullName: "",
@@ -22,21 +22,21 @@ class ProfileContainer extends Component {
 
   componentDidMount() {
     //debugger;
-    getUserDetails("0000-0002-5807-5617")
-      .then((res) => {
-        //debugger;
-        this.setState({
-          Employments:
-            res.recordRecord.activitiesActivitiesSummary.activitiesEmployments
-              .activitiesAffiliationGroup,
-          works:
-            res.recordRecord.activitiesActivitiesSummary.activitiesWorks
-              .activitiesGroup,
-        });
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    // getUserDetails("0000-0002-5807-5617")
+    //   .then((res) => {
+    //     //debugger;
+    //     this.setState({
+    //       // Employments:
+    //       //   res.recordRecord.activitiesActivitiesSummary.activitiesEmployments
+    //       //     .activitiesAffiliationGroup,
+    //       // works:
+    //       //   res.recordRecord.activitiesActivitiesSummary.activitiesWorks
+    //       //     .activitiesGroup,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
   }
 
   render() {

@@ -1,83 +1,80 @@
-export const employment = {
-  "@path": "/0000-0002-5807-5617/employments",
-  "last-modified-date": "2021-03-25T19:40:59.966Z",
-  "affiliation-group": [
-    {
-      "last-modified-date": "2021-03-16T08:38:37.622Z",
-      "external-ids": null,
-      "employment-summary": {
-        "@put-code": "41716",
-        "@display-index": "1",
-        "@path": "/0000-0002-5807-5617/employment/41716",
-        "@visibility": "public",
-        "created-date": "2021-03-16T08:38:37.622Z",
-        "last-modified-date": "2021-03-16T08:38:37.622Z",
-        source: {
-          "source-orcid": {
-            uri: "https://sandbox.orcid.org/0000-0002-5807-5617",
-            path: "0000-0002-5807-5617",
-            host: "sandbox.orcid.org",
-          },
-          "source-name": "shujaat siddiqui",
+export const employment = [
+  {
+    commonLastModifiedDate: "2021-03-16T08:38:37.622Z",
+    commonExternalIds: null,
+    employmentEmploymentSummary: {
+      putCode: "41716",
+      displayIndex: "1",
+      path: "/0000-0002-5807-5617/employment/41716",
+      visibility: "public",
+      commonCreatedDate: "2021-03-16T08:38:37.622Z",
+      commonLastModifiedDate: "2021-03-16T08:38:37.622Z",
+      commonSource: {
+        commonSourceOrcid: {
+          commonUri: "https://sandbox.orcid.org/0000-0002-5807-5617",
+          commonPath: "0000-0002-5807-5617",
+          commonHost: "sandbox.orcid.org",
         },
-        "department-name": "IT",
-        "role-title": "SSE",
-        "start-date": {
-          year: "2017",
-          month: "01",
-          day: "07",
+        commonSourceName: "shujaat siddiqui",
+      },
+      commonDepartmentName: "IT",
+      commonRoleTitle: "SSE",
+      commonStartDate: {
+        commonYear: "2017",
+        commonMonth: "01",
+        commonDay: "07",
+      },
+      commonOrganization: {
+        commonName: "tenpearls",
+        commonAddress: {
+          commonCity: "Karachi",
+          commonRegion: "Sindh",
+          commonCountry: "PK",
         },
-        organization: {
-          name: "tenpearls",
-          address: {
-            city: "Karachi",
-            region: "Sindh",
-            country: "PK",
-          },
+      },
+      commonUrl: "https://www.coursehero.com/file/13153292/week-8-case-study/",
+      commonEndDate: null,
+    },
+  },
+  {
+    commonLastModifiedDate: "2021-03-25T19:40:59.966Z",
+    commonExternalIds: null,
+    employmentEmploymentSummary: {
+      putCode: "41814",
+      displayIndex: "1",
+      path: "/0000-0002-5807-5617/employment/41814",
+      visibility: "public",
+      commonCreatedDate: "2021-03-25T19:40:59.966Z",
+      commonLastModifiedDate: "2021-03-25T19:40:59.966Z",
+      commonSource: {
+        commonSourceOrcid: {
+          commonUri: "https://sandbox.orcid.org/0000-0002-5807-5617",
+          commonPath: "0000-0002-5807-5617",
+          commonHost: "sandbox.orcid.org",
         },
-        url: "https://www.coursehero.com/file/13153292/week-8-case-study/",
+        commonSourceName: "shujaat siddiqui",
+      },
+      commonDepartmentName: "IT",
+      commonRoleTitle: "SSE",
+      commonStartDate: {
+        commonYear: "2017",
+        commonMonth: "01",
+        commonDay: "01",
+      },
+      commonOrganization: {
+        commonName: "wavetec",
+        commonAddress: {
+          commonCity: "karachi",
+          commonRegion: "sindh",
+          commonCountry: "PK",
+        },
+      },
+      commonUrl: "http://www.wavtec.com",
+      commonEndDate: {
+        commonYear: "2020",
+        commonMonth: "01",
+        commonDay: "01",
       },
     },
-    {
-      "last-modified-date": "2021-03-25T19:40:59.966Z",
-      "external-ids": null,
-      "employment-summary": {
-        "@put-code": "41814",
-        "@display-index": "1",
-        "@path": "/0000-0002-5807-5617/employment/41814",
-        "@visibility": "public",
-        "created-date": "2021-03-25T19:40:59.966Z",
-        "last-modified-date": "2021-03-25T19:40:59.966Z",
-        source: {
-          "source-orcid": {
-            uri: "https://sandbox.orcid.org/0000-0002-5807-5617",
-            path: "0000-0002-5807-5617",
-            host: "sandbox.orcid.org",
-          },
-          "source-name": "shujaat siddiqui",
-        },
-        "department-name": "IT",
-        "role-title": "SSE",
-        "start-date": {
-          year: "2017",
-          month: "01",
-          day: "01",
-        },
-        "end-date": {
-          year: "2020",
-          month: "01",
-          day: "01",
-        },
-        organization: {
-          name: "wavetec",
-          address: {
-            city: "karachi",
-            region: "sindh",
-            country: "PK",
-          },
-        },
-        url: "http://www.wavtec.com",
-      },
-    },
-  ],
-};
+  },
+];
