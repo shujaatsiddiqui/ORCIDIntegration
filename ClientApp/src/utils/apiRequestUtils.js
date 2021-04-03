@@ -9,7 +9,7 @@ export const getRequest = (
   params,
   responseType
 ) => {
-  debugger;
+  //debugger;
   const axiosConfig = {
     headers: { "Content-Type": "application/json", ...additionalHeaders },
     params,
@@ -49,7 +49,7 @@ export const deleteRequest = (endpoint, additionalHeaders) => {
 };
 
 const errorHandler = async (error) => {
-  debugger;
+  //debugger;
   // if (error.response.status === 401) {
   //   defaultStorageService.getStorage().clearAll();
   // }
@@ -57,7 +57,7 @@ const errorHandler = async (error) => {
 };
 
 const responseHandler = (response) => {
-  debugger;
+  //debugger;
   if (response.status === 200) {
     return Promise.resolve(response.data);
   }

@@ -33,7 +33,7 @@ export class Authentication extends Component {
   }
 
   async SaveDataToDB(accessToken) {
-    debugger;
+    //debugger;
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

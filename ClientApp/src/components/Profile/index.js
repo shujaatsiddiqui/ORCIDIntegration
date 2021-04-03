@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Profile from "./Profile.jsx";
 import { getUserDetails } from "../../api/RepoService";
 import XMLParser from "react-xml-parser";
-import { employment } from "../../Shared/employment";
-import { works } from "../../Shared/works";
+// import { employment } from "../../Shared/employment";
+// import { works } from "../../Shared/works";
 
 // This is my continer components that deals with all the logics
 // and pass data as props
@@ -11,8 +11,8 @@ class ProfileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Employments: employment,
-      Works: works,
+      Employments: [],
+      Works: [],
       UserProfile: {
         FullName: "",
         ORCID: 90090090 - 809890809,
@@ -21,13 +21,17 @@ class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    debugger;
+    //debugger;
     getUserDetails("0000-0002-5807-5617")
       .then((res) => {
-        debugger;
-        var obj = JSON.parse(res);
+        //debugger;
         this.setState({
-          Employments: new XMLParser().parseFromString(res),
+          Employments:
+            res.recordRecord.activitiesActivitiesSummary.activitiesEmployments
+              .activitiesAffiliationGroup,
+          works:
+            res.recordRecord.activitiesActivitiesSummary.activitiesWorks
+              .activitiesGroup,
         });
       })
       .catch((error) => {

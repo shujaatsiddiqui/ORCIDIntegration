@@ -73,10 +73,17 @@ const Employment = (props) => {
 
   const x = a.length;
   const { Employments } = props;
+  //debugger;
   // console.log((1+1).toString()+'bbb')
   // console.log(Employments["affiliation-group"])
 
   const classes = useStyles();
+  // Employments.map((element) => {
+  //   debugger;
+  //   console.log(
+  //     element["employmentEmploymentSummary"]["commonOrganization"].commonName
+  //   );
+  // });
   return (
     <div className={classes.paper}>
       <button
@@ -86,7 +93,7 @@ const Employment = (props) => {
         onClick={() => toggle(1)}
       >
         <span className="app__toggle-text">
-          Employment ({Employments["affiliation-group"].length})
+          Employment ({Employments.length})
         </span>
         <div className="rotate90">
           <svg
@@ -105,210 +112,105 @@ const Employment = (props) => {
           (state.isOpen1 ? "app__collapse--active" : "")
         }
       >
-        <Card className={classes.root}>
-          <CardContent>
-            <Paper elevation={3} className={classes.centered}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                <strong>
-                  {
-                    Employments["affiliation-group"]["0"]["employment-summary"][
-                      "organization"
-                    ]["name"]
-                  }
-                  :{" "}
-                  {
-                    Employments["affiliation-group"]["0"]["employment-summary"][
-                      "organization"
-                    ]["address"]["city"]
-                  }
-                  ,{" "}
-                  {
-                    Employments["affiliation-group"]["0"]["employment-summary"][
-                      "organization"
-                    ]["address"]["region"]
-                  }
-                  ,{" "}
-                  {
-                    Employments["affiliation-group"]["0"]["employment-summary"][
-                      "organization"
-                    ]["address"]["country"]
-                  }
-                </strong>
-              </Typography>
-              <Typography variant="h5" component="h2"></Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["year"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["month"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["day"]
-                }{" "}
-                <strong>to</strong> Present |{" "}
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "role-title"
-                  ]
-                }{" "}
-                (
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "department-name"
-                  ]
-                }
-                )
-                <br />
-                Employment
-              </Typography>
-              <Grid spacing={1} className={classes.containers}>
-                <Grid item xs={8}>
-                  <Typography variant="body2" component="p">
-                    <strong>Source: </strong>
+        {Employments.map((element, key) => (
+          <Card key={key} className={classes.root}>
+            <CardContent>
+              <Paper elevation={3} className={classes.centered}>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  <strong>
                     {
-                      Employments["affiliation-group"]["0"][
-                        "employment-summary"
-                      ]["source"]["source-name"]
+                      element["employmentEmploymentSummary"][
+                        "commonOrganization"
+                      ].commonName
                     }
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2" component="p">
-                    <FaStar /> Preferred source
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </CardContent>
-        </Card>
-
-        <Card className={classes.root}>
-          <CardContent>
-            <Paper elevation={3} className={classes.centered}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                <strong>
-                  {
-                    Employments["affiliation-group"]["1"]["employment-summary"][
-                      "organization"
-                    ]["name"]
-                  }
-                  :{" "}
-                  {
-                    Employments["affiliation-group"]["1"]["employment-summary"][
-                      "organization"
-                    ]["address"]["city"]
-                  }
-                  ,{" "}
-                  {
-                    Employments["affiliation-group"]["1"]["employment-summary"][
-                      "organization"
-                    ]["address"]["region"]
-                  }
-                  ,{" "}
-                  {
-                    Employments["affiliation-group"]["1"]["employment-summary"][
-                      "organization"
-                    ]["address"]["country"]
-                  }
-                </strong>
-              </Typography>
-              <Typography variant="h5" component="h2"></Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                {
-                  Employments["affiliation-group"]["1"]["employment-summary"][
-                    "start-date"
-                  ]["year"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["1"]["employment-summary"][
-                    "start-date"
-                  ]["month"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["1"]["employment-summary"][
-                    "start-date"
-                  ]["day"]
-                }{" "}
-                <strong>to</strong>{" "}
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["year"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["month"]
-                }
-                -
-                {
-                  Employments["affiliation-group"]["0"]["employment-summary"][
-                    "start-date"
-                  ]["day"]
-                }{" "}
-                |{" "}
-                {
-                  Employments["affiliation-group"]["1"]["employment-summary"][
-                    "role-title"
-                  ]
-                }{" "}
-                (
-                {
-                  Employments["affiliation-group"]["1"]["employment-summary"][
-                    "department-name"
-                  ]
-                }
-                )
-                <br />
-                Employment
-              </Typography>
-              <Grid spacing={1} className={classes.containers}>
-                <Grid item xs={8}>
-                  <Typography variant="body2" component="p">
-                    <strong>Source: </strong>
-                    {/* <br /> */}
+                    :{" "}
                     {
-                      Employments["affiliation-group"]["1"][
-                        "employment-summary"
-                      ]["source"]["source-name"]
+                      element["employmentEmploymentSummary"][
+                        "commonOrganization"
+                      ]["commonAddress"].commonCity
                     }
-                  </Typography>
+                    ,{" "}
+                    {
+                      element["employmentEmploymentSummary"][
+                        "commonOrganization"
+                      ]["commonAddress"].commonRegion
+                    }
+                    ,{" "}
+                    {
+                      element["employmentEmploymentSummary"][
+                        "commonOrganization"
+                      ]["commonAddress"].Country
+                    }
+                  </strong>
+                </Typography>
+                <Typography variant="h5" component="span"></Typography>
+                <Typography className={classes.pos} color="textSecondary">
+                  {
+                    element["employmentEmploymentSummary"]["commonStartDate"]
+                      .commonYear
+                  }
+                  -
+                  {
+                    element["employmentEmploymentSummary"]["commonStartDate"]
+                      .commonMonth
+                  }
+                  -
+                  {
+                    element["employmentEmploymentSummary"]["commonStartDate"]
+                      .commonDay
+                  }{" "}
+                  <strong>to</strong>{" "}
+                  {
+                    // element["employmentEmploymentSummary"]["commonEndDate"]
+                    //   .commonYear
+                  }
+                  -
+                  {
+                    // element["employmentEmploymentSummary"]["commonEndDate"]
+                    //   .commonMonth
+                  }
+                  -
+                  {
+                    // element["employmentEmploymentSummary"]["commonEndDate"]
+                    //   .commonDay
+                  }{" "}
+                  | {element["employmentEmploymentSummary"]["commonRoleTitle"]}{" "}
+                  ({element["employmentEmploymentSummary"].commonDepartmentName}
+                  )
+                  <br />
+                  Employment
+                </Typography>
+                <Grid className={classes.containers}>
+                  <Grid item>
+                    <Typography variant="body2" component="span">
+                      <strong>Source: </strong>
+                      {/* <br /> */}
+                      {
+                        element["employmentEmploymentSummary"]["commonSource"]
+                          .commonSourceName
+                      }
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body2" component="span">
+                      {/* <i className="fa fa-star" />Preferred source */}
+                      {/* <MDBBadge color="default"> */}
+                      <FaStar /> Preferred source
+                      {/* </MDBBadge> */}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2" component="p">
-                    {/* <i className="fa fa-star" />Preferred source */}
-                    {/* <MDBBadge color="default"> */}
-                    <FaStar /> Preferred source
-                    {/* </MDBBadge> */}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </CardContent>
-          {/* <CardActions>
+              </Paper>
+            </CardContent>
+            {/* <CardActions>
                         <Button size="small">Learn More</Button>
                     </CardActions> */}
-        </Card>
+          </Card>
+        ))}
       </Collapse>
     </div>
   );

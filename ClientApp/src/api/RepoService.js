@@ -1,6 +1,7 @@
 import * as APIService from "../utils/apiRequestUtils";
 
 export const getUserDetails = (orcid) => {
+  //debugger;
   return APIService.getRequest("OrcidIntegration/" + orcid, {
     //Authorization: "bearer " + "f1c0d2ec-6693-4739-bc10-ce02fb784884",
     "Access-Control-Allow-Origin": "*",
