@@ -108,7 +108,7 @@ const Employment = (props) => {
         }
       >
         {Employments.map((element, key) => (
-          <Card className={classes.root}>
+          <Card key={key} className={classes.root}>
             <CardContent>
               <Paper elevation={3} className={classes.centered}>
                 <Typography
@@ -160,8 +160,8 @@ const Employment = (props) => {
                   }{" "}
                   <strong>to</strong>{" "}
                   {
-                    element["employmentEmploymentSummary"]["commonEndDate"]
-                      .commonYear
+                    // element["employmentEmploymentSummary"]["commonEndDate"]
+                    //   .commonYear
                   }
                   -
                   {
