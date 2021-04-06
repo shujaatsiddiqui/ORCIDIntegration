@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 const Employment = (props) => {
   // console.log(props.Emloyements)
   const [state, setState] = useState({
-    isOpen1: false,
+    isOpen1: true,
     isOpen2: false,
     isOpen3: false,
 
@@ -86,9 +86,11 @@ const Employment = (props) => {
   const x = a.length;
   const { Employments } = props;
   // debugger;
-  // console.log((1+1).toString()+'bbb')
-  // console.log(Employments["affiliation-group"])
+  function getSecondPart(str) {
+    return str.split('T')[0];
+}
 
+  
   const classes = useStyles();
 
   return (
@@ -129,7 +131,7 @@ const Employment = (props) => {
                   className={classes.title}
                   gutterBottom
                 >
-                  <strong>
+                  <strong style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
                     {element["employmentEmploymentSummary"][
                       "commonOrganization"
                     ].commonName.toUpperCase()}
@@ -155,7 +157,7 @@ const Employment = (props) => {
 
                 </Typography>
                 <Typography variant="h5" component="h2"></Typography>
-                <Typography className={classes.pos}>
+                <Typography className={classes.pos} style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
                   {
                     element["employmentEmploymentSummary"]["commonStartDate"]
                       .commonYear
@@ -192,16 +194,16 @@ const Employment = (props) => {
                   Employment
                 </Typography>
                 <Divider className={classes.divider} />
-                <Grid spacing={1} className={classes.containers}>
+                <Grid spacing={1} className={classes.containers } >
                   <Grid item xs={8}>
-                    <Typography>
+                    <Typography >
                       <Typography>
                         <b>Added</b>
                       </Typography>
                       <Typography>
-                        {
+                        {getSecondPart(
                           element["employmentEmploymentSummary"].commonCreatedDate
-                        }
+                        )}
                       </Typography>
                     </Typography>
                   </Grid>
@@ -211,8 +213,9 @@ const Employment = (props) => {
                         <b>Last modified</b>
                       </Typography>
                       <Typography>
-                        {
+                        {getSecondPart(
                          element["employmentEmploymentSummary"].commonLastModifiedDate
+                        )
                         }
                       </Typography>
                     </Typography>

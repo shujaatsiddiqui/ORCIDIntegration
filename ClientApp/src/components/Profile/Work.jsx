@@ -76,10 +76,12 @@ const Work = (props) => {
 
   const { Works } = props;
 
-  console.log("-------------------------------------", Works);
+  console.log(Works);
 
-  // var str = Works["workWorkSummary"]["workTitle"].commonTitle;
-  // var array = str.split(" ");
+
+  function getSecondPart(str) {
+    return str.split('T')[0];
+}
 
   return (
     <div className={classes.paper}>
@@ -111,7 +113,7 @@ const Work = (props) => {
         {Works.map((element, key) => (
           <Card className={classes.root}>
             <CardContent>
-              <Paper elevation={3} className={classes.centered}>
+              <Paper elevation={3} className={classes.centered} >
                 <Typography
                   className={classes.title}
                   color="textPrimary"
@@ -121,10 +123,10 @@ const Work = (props) => {
                     {element["workWorkSummary"]["workTitle"].commonTitle}
                   </strong>
                 </Typography>
-                <Typography component="h2">
+                <Typography component="h2" style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
                   {element["workWorkSummary"].workJournalTitle}
                 </Typography>
-                <Typography className={classes.pos}>
+                <Typography className={classes.pos} style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
                   {
                     element["workWorkSummary"]["commonPublicationDate"]
                       .commonYear
@@ -148,7 +150,7 @@ const Work = (props) => {
                         <b>Added</b>
                       </Typography>
                       <Typography>
-                        {element["workWorkSummary"].commonCreatedDate}
+                        {getSecondPart(element["workWorkSummary"].commonCreatedDate)}
                       </Typography>
                     </Typography>
                   </Grid>
@@ -157,8 +159,8 @@ const Work = (props) => {
                       <Typography>
                         <b>Last modified</b>
                       </Typography>
-                      <Typography>
-                        {element["workWorkSummary"].commonLastModifiedDate}
+                      <Typography >
+                        {getSecondPart(element["workWorkSummary"].commonLastModifiedDate)}
                       </Typography>
                     </Typography>
                   </Grid>

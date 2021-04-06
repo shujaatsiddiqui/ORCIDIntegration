@@ -46,7 +46,7 @@ function User(props) {
           <Typography>
             <h2
               className={classes.text}
-              style={{ color: "#6A0919", textAlign: "justify" }}
+              style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word',color: "#6A0919", textAlign: "justify" }}
             >
               Shujaat Siddiqui
             </h2>
@@ -69,25 +69,25 @@ function User(props) {
             >
               ORCID iD
             </h4>
-            <h6>
+            <h6 style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
               <GrCircleInformation /> https://orcid.org/0000-0003-0871-1387
             </h6>
           </Typography>
         </Paper>
         <br />
-        <Typography style={{ textAlign: "left" }}>
+        <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
           <span>
             <strong>
               <b>Other IDs</b>
             </strong>{" "}
             <br />
             Scopus Author ID: 55538861800 <br />
-            <strong>Sources:</strong> Shujaat Siddiqui via Scopus - <br />
+            <b>Sources:</b> Shujaat Siddiqui via Scopus - <br />
             Elsevier 2021-01-12
           </span>
         </Typography>
         <Divider className={classes.divider} />
-        <Typography style={{ textAlign: "left" }}>
+        <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
           <span>
             <strong>
               <b>Email</b>
