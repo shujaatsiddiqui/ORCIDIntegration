@@ -52,10 +52,10 @@ function Profile(props) {
       <Grid item xs={8}>
         <Paper elevation={0} className={classes.papers}>
           <Employment Employments={Employments} />
-          {/* <Work Works={Works} /> */}
+          <Work Works={Works} />
         </Paper>
         <Typography>
-          <strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM
+          <span style={{fontSize: 'x-small',paddingLeft: '15px'}}><strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM</span>
         </Typography>
       </Grid>
     </Grid>

@@ -7,6 +7,7 @@ import cx from "classnames";
 import Collapse from "@kunukn/react-collapse";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 import { FaStar } from "react-icons/fa";
 
@@ -60,7 +61,12 @@ const Employment = (props) => {
     isOpen1: false,
     isOpen2: false,
     isOpen3: false,
+
     spy3: {},
+  });
+
+  const [ab, setAb] = useState({
+    open: false,
   });
 
   const toggle = (index) => {
@@ -68,12 +74,18 @@ const Employment = (props) => {
 
     setState((prevState) => ({ [collapse]: !prevState[collapse] }));
   };
+  const toggle2 = () => {
+    let collapse = "open";
+
+    setAb((prevState) => ({ [collapse]: !prevState[collapse] }));
+    console.log(ab);
+  };
 
   const a = [1, 2];
 
   const x = a.length;
   const { Employments } = props;
-  debugger;
+  // debugger;
   // console.log((1+1).toString()+'bbb')
   // console.log(Employments["affiliation-group"])
 
@@ -92,7 +104,7 @@ const Employment = (props) => {
         </span>
         <div className="rotate90">
           <svg
-            className="icon"
+            className={cx("icon", { "icon--expanded": state.isOpen1 })}
             viewBox="6 0 12 24"
             style={{ background: "white" }}
           >
@@ -112,16 +124,15 @@ const Employment = (props) => {
             <CardContent>
               <Paper elevation={3} className={classes.centered}>
                 <Typography
+                  variant="body2"
+                  component="p"
                   className={classes.title}
-                  color="textSecondary"
                   gutterBottom
                 >
                   <strong>
-                    {
-                      element["employmentEmploymentSummary"][
-                        "commonOrganization"
-                      ].commonName
-                    }
+                    {element["employmentEmploymentSummary"][
+                      "commonOrganization"
+                    ].commonName.toUpperCase()}
                     :{" "}
                     {
                       element["employmentEmploymentSummary"][
@@ -138,12 +149,13 @@ const Employment = (props) => {
                     {
                       element["employmentEmploymentSummary"][
                         "commonOrganization"
-                      ]["commonAddress"].Country
+                      ]["commonAddress"].commonCountry
                     }
                   </strong>
+
                 </Typography>
                 <Typography variant="h5" component="h2"></Typography>
-                <Typography className={classes.pos} color="textSecondary">
+                <Typography className={classes.pos}>
                   {
                     element["employmentEmploymentSummary"]["commonStartDate"]
                       .commonYear
@@ -179,14 +191,43 @@ const Employment = (props) => {
                   <br />
                   Employment
                 </Typography>
+                <Divider className={classes.divider} />
+                <Grid spacing={1} className={classes.containers}>
+                  <Grid item xs={8}>
+                    <Typography>
+                      <Typography>
+                        <b>Added</b>
+                      </Typography>
+                      <Typography>
+                        {
+                          element["employmentEmploymentSummary"].commonCreatedDate
+                        }
+                      </Typography>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      <Typography>
+                        <b>Last modified</b>
+                      </Typography>
+                      <Typography>
+                        {
+                         element["employmentEmploymentSummary"].commonLastModifiedDate
+                        }
+                      </Typography>
+                    </Typography>
+                  </Grid>
+                </Grid>
+
+                <br />
+
                 <Grid spacing={1} className={classes.containers}>
                   <Grid item xs={8}>
                     <Typography variant="body2" component="p">
                       <strong>Source: </strong>
-                      {
-                        element["employmentEmploymentSummary"]["commonSource"]
-                          .commonSourceName
-                      }
+                      {element["employmentEmploymentSummary"][
+                        "commonSource"
+                      ].commonSourceName.toUpperCase()}
                     </Typography>
                   </Grid>
                   <Grid item xs={4}>

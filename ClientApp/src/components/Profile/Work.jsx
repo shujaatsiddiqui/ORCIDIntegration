@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Card } from "@material-ui/core";
+import { Card, Divider } from "@material-ui/core";
 import cx from "classnames";
 import Collapse from "@kunukn/react-collapse";
 import CardContent from "@material-ui/core/CardContent";
@@ -76,8 +76,10 @@ const Work = (props) => {
 
   const { Works } = props;
 
-  var str = Works["group"]["1"]["work-summary"]["title"]["title"];
-  var array = str.split(" ");
+  console.log("-------------------------------------", Works);
+
+  // var str = Works["workWorkSummary"]["workTitle"].commonTitle;
+  // var array = str.split(" ");
 
   return (
     <div className={classes.paper}>
@@ -88,10 +90,10 @@ const Work = (props) => {
         })}
         onClick={() => toggle(1)}
       >
-        <span className="app__toggle-text">WORK ({Works["group"].length})</span>
+        <span className="app__toggle-text">WORK ({Works.length})</span>
         <div className="rotate90">
           <svg
-            className="icon"
+            className={cx("icon", { "icon--expanded": state.isOpen1 })}
             viewBox="6 0 12 24"
             style={{ background: "white" }}
           >
@@ -106,110 +108,83 @@ const Work = (props) => {
           (state.isOpen1 ? "app__collapse--active" : "")
         }
       >
-        <Card className={classes.root}>
-          <CardContent>
-            <Paper elevation={3} className={classes.centered}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                <strong>
-                  {Works["group"]["0"]["work-summary"]["title"]["title"]}
-                </strong>
-              </Typography>
-              <Typography component="h2">
-                {Works["group"]["0"]["work-summary"]["journal-title"]}
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                {
-                  Works["group"]["0"]["work-summary"]["publication-date"][
-                    "year"
-                  ]
-                }{" "}
-                | {Works["group"]["0"]["work-summary"]["type"]}
-                <br />
-                DOI:{" "}
-                <a href="#">{Works["group"]["0"]["work-summary"]["url"]}</a>
-              </Typography>
-              <Grid spacing={1} className={classes.containers}>
-                <Grid item xs={8}>
-                  <Typography variant="body2" component="p">
-                    <strong>Source:</strong>{" "}
-                    {
-                      Works["group"]["0"]["work-summary"]["source"][
-                        "source-name"
-                      ]
-                    }
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2" component="p">
-                    {/* <i className="fa fa-star" />Preferred source */}
-                    {/* <MDBBadge color="default"> */}
-                    <FaStar />
-                    Preferred source
-                    {/* </MDBBadge> */}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </CardContent>
-        </Card>
-
-        <Card className={classes.root}>
-          <CardContent>
-            <Paper elevation={3} className={classes.centered}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                <strong>
-                  {a.map((i) => {
-                    return array[i] + " ";
-                  })}
+        {Works.map((element, key) => (
+          <Card className={classes.root}>
+            <CardContent>
+              <Paper elevation={3} className={classes.centered}>
+                <Typography
+                  className={classes.title}
+                  color="textPrimary"
+                  gutterBottom
+                >
+                  <strong style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                    {element["workWorkSummary"]["workTitle"].commonTitle}
+                  </strong>
+                </Typography>
+                <Typography component="h2">
+                  {element["workWorkSummary"].workJournalTitle}
+                </Typography>
+                <Typography className={classes.pos}>
+                  {
+                    element["workWorkSummary"]["commonPublicationDate"]
+                      .commonYear
+                  }{" "}
+                  | {element["workWorkSummary"].workType}
                   <br />
-                  {b.map((i) => {
-                    return array[i] + " ";
-                  })}
-                </strong>
-              </Typography>
-              <Typography component="h2">
-                {Works["group"]["1"]["work-summary"]["journal-title"]}
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                {
-                  Works["group"]["1"]["work-summary"]["publication-date"][
-                    "year"
-                  ]
-                }{" "}
-                | {Works["group"]["1"]["work-summary"]["type"]}
+                  <Divider className={classes.divider} />
+                  URL:{" "}
+                  <a
+                    href={element["workWorkSummary"].commonUrl}
+                    target="_blank"
+                  >
+                    {element["workWorkSummary"].commonUrl}
+                  </a>
+                </Typography>
+
+                <Grid spacing={1} className={classes.containers}>
+                  <Grid item xs={8}>
+                    <Typography>
+                      <Typography>
+                        <b>Added</b>
+                      </Typography>
+                      <Typography>
+                        {element["workWorkSummary"].commonCreatedDate}
+                      </Typography>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      <Typography>
+                        <b>Last modified</b>
+                      </Typography>
+                      <Typography>
+                        {element["workWorkSummary"].commonLastModifiedDate}
+                      </Typography>
+                    </Typography>
+                  </Grid>
+                </Grid>
+
                 <br />
-                DOI:{" "}
-                <a href="#">{Works["group"]["1"]["work-summary"]["url"]}</a>
-              </Typography>
-              <Grid spacing={1} className={classes.containers}>
-                <Grid item xs={8}>
-                  <Typography variant="body2" component="p">
-                    <strong>Source:</strong>{" "}
-                    {
-                      Works["group"]["1"]["work-summary"]["source"][
-                        "source-name"
-                      ]
-                    }
-                  </Typography>
+                <Grid spacing={1} className={classes.containers}>
+                  <Grid item xs={8}>
+                    <Typography variant="body2" component="p">
+                      <strong>Source:</strong>{" "}
+                      {element["workWorkSummary"][
+                        "commonSource"
+                      ].commonSourceName.toUpperCase()}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="body2" component="p">
+                      <FaStar />
+                      Preferred source
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2" component="p">
-                    <FaStar />
-                    Preferred source
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </CardContent>
-        </Card>
+              </Paper>
+            </CardContent>
+          </Card>
+        ))}
       </Collapse>
     </div>
   );

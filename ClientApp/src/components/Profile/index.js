@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
 import { getUserDetails } from "../../api/RepoService";
-import XMLParser from "react-xml-parser";
+// import XMLParser from "react-xml-parser";
 import { employment } from "../../Shared/employment";
 import { works } from "../../Shared/works";
 
