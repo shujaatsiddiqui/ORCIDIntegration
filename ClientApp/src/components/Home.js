@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import {
   Card,
   CardImg,
@@ -9,10 +10,16 @@ import {
   Button,
 } from "reactstrap";
 
-
 import SearchBar from "material-ui-search-bar";
 
 export class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+    };
+  }
+
   static displayName = Home.name;
 
   render() {
@@ -31,12 +38,15 @@ export class Home extends Component {
             <CardText>Integration of IOBM with ORCID</CardText>
           </CardBody>
         </Card>
-        <br/>
+        <br />
         <SearchBar
           placeholder="Enter ORCID"
           className="search"
-          onChange={(newValue) => console.log({ newValue })}
-          onRequestSearch={() => console.log("searched")}
+          value={this.state.value}
+          onChange={(newValue) => this.setState({ value: newValue })}
+          onRequestSearch={() =>
+            this.props.history.push("profile/" + this.state.value)
+          }
         />
       </div>
     );

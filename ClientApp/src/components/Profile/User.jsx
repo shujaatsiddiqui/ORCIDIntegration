@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function User(props) {
+  const {UserProfile} = props;
   const classes = useStyles();
   return (
     <>
@@ -48,7 +49,7 @@ function User(props) {
               className={classes.text}
               style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word',color: "#6A0919", textAlign: "justify" }}
             >
-              Shujaat Siddiqui
+              {UserProfile.FullName}
             </h2>
           </Typography>
         </Paper>
@@ -70,7 +71,7 @@ function User(props) {
               ORCID iD
             </h4>
             <h6 style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
-              <GrCircleInformation /> https://orcid.org/0000-0003-0871-1387
+              <GrCircleInformation /> {"https://orcid.org/"+UserProfile.ORCID}
             </h6>
           </Typography>
         </Paper>
@@ -82,7 +83,7 @@ function User(props) {
             </strong>{" "}
             <br />
             Scopus Author ID: 55538861800 <br />
-            <b>Sources:</b> Shujaat Siddiqui via Scopus - <br />
+            <b>Sources:</b> {UserProfile.FullName+" via Scopus"} - <br />
             Elsevier 2021-01-12
           </span>
         </Typography>

@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 function Profile(props) {
   const classes = useStyles();
   const { Employments, Works, UserProfile } = props;
-  //debugger;
   return (
     <Grid container xs={12} spacing={2}>
       <Grid item xs={4}>
@@ -55,7 +54,9 @@ function Profile(props) {
           <Work Works={Works} />
         </Paper>
         <Typography>
-          <span style={{fontSize: 'x-small',paddingLeft: '15px'}}><strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM</span>
+          <span style={{ fontSize: "x-small", paddingLeft: "15px" }}>
+            <strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM
+          </span>
         </Typography>
       </Grid>
     </Grid>

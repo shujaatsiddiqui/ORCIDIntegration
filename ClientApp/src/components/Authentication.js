@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import queryString from "query-string";
-import { convertCompilerOptionsFromJson } from "typescript";
+import ReactLoading from "react-loading";
+
+import { Link } from "react-router-dom";
 
 export class Authentication extends Component {
   componentDidMount() {
+    debugger;
     let params = queryString.parse(this.props.location.search);
     let accessToken = params.code;
-    this.SaveDataToDB(accessToken);
+    //this.SaveDataToDB(accessToken);
   }
 
   constructor(props) {
@@ -21,11 +24,19 @@ export class Authentication extends Component {
     return (
       <div className="container">
         {this.state.loading ? (
-          <div>loading..</div>
+          <ReactLoading
+            type={"spin"}
+            color={"black"}
+            height={"50px"}
+            width={"50px"}
+          />
         ) : (
           <h2>
             <span>Token Has Been Saved Successfully: </span>
             {this.state.data}
+            <span>
+              <Link to="/home">Home</Link>
+            </span>
           </h2>
         )}
       </div>
