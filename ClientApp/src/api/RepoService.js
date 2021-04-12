@@ -13,3 +13,16 @@ export const getUserDetails = (orcid) => {
     // Host: "api.sandbox.orcid.org",
   });
 };
+
+export const GetAccessTokenFromCode = (code) => {
+  //debugger;
+  return APIService.postRequest(
+    "OrcidIntegration/accesstoken/",
+    JSON.stringify({ code: code }),
+    {
+      "Access-Control-Allow-Origin": "*",
+      crossDomain: true,
+      "Content-Type": "application/json",
+    }
+  );
+};

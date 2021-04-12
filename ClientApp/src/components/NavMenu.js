@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
+//import { ReactComponent as YourSvg } from '../logo.svg';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -37,7 +38,8 @@ export class NavMenu extends Component {
           light
         >
           <Container>
-            <NavbarBrand tag={Link} to="/">
+            {/* <YourSvg/> */}
+            <NavbarBrand tag={Link} to="/home">
               IOBM-ORCID
             </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />

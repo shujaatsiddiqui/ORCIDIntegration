@@ -9,7 +9,7 @@ import ReactLoading from "react-loading";
 // and pass data as props
 class ProfileContainer extends Component {
   constructor(props) {
-    //debugger;
+    debugger;
     super(props);
     this.state = {
       isLoading: true,
@@ -35,7 +35,7 @@ class ProfileContainer extends Component {
           Works:
             res.recordRecord.activitiesActivitiesSummary.activitiesWorks
               .activitiesGroup,
-          UserProfile: { ...this.state, FullName: "shujaat siddiqui" },
+          UserProfile: { ...this.state.UserProfile, FullName: "shujaat siddiqui" },
           isLoading: false,
         });
       })

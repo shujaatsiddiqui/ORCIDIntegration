@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function User(props) {
+  debugger;
   const {UserProfile} = props;
   const classes = useStyles();
   return (
@@ -76,19 +77,18 @@ function User(props) {
           </Typography>
         </Paper>
         <br />
-        <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
+        {/* <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
           <span>
             <strong>
               <b>Other IDs</b>
             </strong>{" "}
             <br />
             Scopus Author ID: 55538861800 <br />
-            <b>Sources:</b> {UserProfile.FullName+" via Scopus"} - <br />
-            Elsevier 2021-01-12
+            <b>Sources:</b> {UserProfile.FullName} - <br />
           </span>
         </Typography>
-        <Divider className={classes.divider} />
-        <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
+        <Divider className={classes.divider} /> */}
+        {/* <Typography style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word', textAlign: "left" }}>
           <span>
             <strong>
               <b>Email</b>
@@ -98,6 +98,7 @@ function User(props) {
             std_21952@iobm.edu.pk <br />
           </span>
         </Typography>
+       */}
       </Paper>
     </>
   );

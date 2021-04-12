@@ -103,7 +103,8 @@ namespace CapstoneProject.Controllers
             }
             else
             {
-                return Content(httpResponseMessage.Content.ReadAsStringAsync().Result);
+                //return Content(httpResponseMessage.Content.ReadAsStringAsync().Result);
+                return BadRequest(httpResponseMessage.Content.ReadAsStringAsync().Result);
             }
         }
 
