@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
-//import { ReactComponent as YourSvg } from '../logo.svg';
+//import { ReactComponent as Logo } from '../../public/logo.svg';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -38,7 +38,13 @@ export class NavMenu extends Component {
           light
         >
           <Container>
-            {/* <YourSvg/> */}
+            <Link to="/home">
+              <img
+                src={process.env.PUBLIC_URL + "/logo.png"}
+                width="50px"
+                height="50px"
+              />
+            </Link>
             <NavbarBrand tag={Link} to="/home">
               IOBM-ORCID
             </NavbarBrand>
