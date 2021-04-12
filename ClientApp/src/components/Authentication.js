@@ -6,16 +6,15 @@ import { Link } from "react-router-dom";
 
 export class Authentication extends Component {
   componentDidMount() {
-    debugger;
     let params = queryString.parse(this.props.location.search);
     let accessToken = params.code;
-    //this.SaveDataToDB(accessToken);
+    this.SaveDataToDB(accessToken);
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       data: "",
     };
   }
@@ -31,13 +30,15 @@ export class Authentication extends Component {
             width={"50px"}
           />
         ) : (
-          <h2>
-            <span>Token Has Been Saved Successfully: </span>
-            {this.state.data}
-            <span>
-              <Link to="/home">Home</Link>
-            </span>
-          </h2>
+          <div className="row">
+            <div className="col-md-6 col-md-offset-3">
+              <h3>
+                <span>Token Has Been Saved Successfully: </span>
+                {this.state.data}
+              </h3>
+              <Link to="/home">Click Here</Link>
+            </div>
+          </div>
         )}
       </div>
     );
