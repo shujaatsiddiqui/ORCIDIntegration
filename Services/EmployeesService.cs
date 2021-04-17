@@ -50,7 +50,7 @@ namespace CapstoneProject.Services
             HttpClientObj.DefaultRequestHeaders.Accept.Clear();
             HttpClientObj.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
             HttpClientObj.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.orcid+xml"));
-            HttpResponseMessage response = await HttpClientObj.GetAsync("0000-0002-5807-5617" + "/external-identifiers");
+            HttpResponseMessage response = await HttpClientObj.GetAsync("0000-0002-5807-5617" + "/record");
             return response;
         }
 

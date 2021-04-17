@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Employment from "./Employment";
 import Work from "./Work";
 import User from "./User";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -44,22 +44,38 @@ function Profile(props) {
   const classes = useStyles();
   const { Employments, Works, UserProfile } = props;
   return (
-    <Grid container xs={12} spacing={2}>
-      <Grid item xs={4}>
-        <User UserProfile={UserProfile} />
-      </Grid>
-      <Grid item xs={8}>
-        <Paper elevation={0} className={classes.papers}>
-          <Employment Employments={Employments} />
-          <Work Works={Works} />
-        </Paper>
-        <Typography>
-          <span style={{ fontSize: "x-small", paddingLeft: "15px" }}>
-            <strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM
-          </span>
-        </Typography>
-      </Grid>
-    </Grid>
+    <div className="container">
+      <div
+        className="row"
+        style={{ display: "flow-root", marginRight: "20px" }}
+      >
+        <Button
+          variant="contained"
+          style={{ float: "right" }}
+          onClick={props.OnFetchClick}
+        >
+          Fetch
+        </Button>
+      </div>
+      <div className="row">
+        <Grid container xs={12} spacing={2}>
+          <Grid item xs={4}>
+            <User UserProfile={UserProfile} />
+          </Grid>
+          <Grid item xs={8}>
+            <Paper elevation={0} className={classes.papers}>
+              <Employment Employments={Employments} />
+              <Work Works={Works} />
+            </Paper>
+            <Typography>
+              <span style={{ fontSize: "x-small", paddingLeft: "15px" }}>
+                <strong>Record last modified</strong> Mar 15, 2021 9:21:14 PM
+              </span>
+            </Typography>
+          </Grid>
+        </Grid>
+      </div>
+    </div>
   );
 }
 

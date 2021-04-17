@@ -14,6 +14,13 @@ export const getUserDetails = (orcid) => {
   });
 };
 
+export const fetchUserDetails = (orcid) => {
+  return APIService.getRequest("OrcidIntegration/FetchDetail/" + orcid, {
+    "Access-Control-Allow-Origin": "*",
+    crossDomain: true,
+  });
+};
+
 export const GetAccessTokenFromCode = (code) => {
   //debugger;
   return APIService.postRequest(
